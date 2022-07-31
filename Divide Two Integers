@@ -1,0 +1,26 @@
+class Solution:
+    def divide(self, dividend, divisor):
+        """
+        :type dividend: int
+        :type divisor: int
+        :rtype: int
+        """
+        if divisor == 0:
+            return dividend
+        elif dividend < 0 and divisor < 0:
+            dividend = dividend * -1 
+            divisor = divisor * -1 
+            if dividend == 2147483648:
+                dividend -= 1
+            if divisor == 2147483648:
+                divisor -= 1
+            
+            if divisor == 0:
+                return dividend
+            return dividend // divisor
+        elif divisor < 0:
+            return (dividend // (divisor * -1)) * -1
+        elif dividend < 0:
+            return ((dividend * -1) // divisor) * -1
+        return dividend // divisor 
+        
