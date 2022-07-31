@@ -1,0 +1,36 @@
+class Solution {
+public:
+    vector<int> relativeSortArray(vector<int>& arr1, vector<int>& arr2) {
+        
+        // intialize the container sort array
+        vector <int>sortArr;
+        int len = arr2.size();
+        
+        // loop through array 2 which we sort like that
+        for(int i = 0; i < len; i++){
+            
+            // function for sort vector 1
+            add_element_to_vector(arr2[i], arr1, sortArr);
+        }
+        
+        sort(arr1.begin(), arr1.end());
+        for(int i = 0; i < arr1.size(); i++){
+            if(arr1[i] != -1){
+                sortArr.push_back(arr1[i]);
+            }
+        }
+        // return array sorted
+        return sortArr;
+    }
+    
+    // helper function call vector sorted by reference and return nothing
+    void add_element_to_vector(int element, vector<int>&arr1, vector<int>&sortArr){
+        
+        for(int i = 0; i < arr1.size(); i++){
+            if(arr1[i] == element){
+                sortArr.push_back(element);
+                arr1[i] = -1;
+            }
+        }
+    }
+};
