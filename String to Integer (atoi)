@@ -1,0 +1,46 @@
+class Solution:
+    def myAtoi(self, str):
+        """
+        :type str: str
+        :rtype: int
+        """
+        m1 = True
+        total = ''
+        for i in str:
+            if total == '' and m1 == True and i == ' ':
+                pass
+            else:
+                total += i
+                m1 = False
+        ch1 = []
+        ch2 = ''
+        str = total
+        total = ''
+        flag = True
+
+        for i in str:
+            if i == '-' or i == '+':  # ch = '-'
+                ch1.append(i)
+                ch2 = i
+            elif ord(i) < 48 or ord(i) > 57 or (i == ' ' and flag2 == True):  # ch not in 10 base
+                flag = False
+
+            elif flag == True:
+                total += i
+            else:
+                pass
+        l = len(ch1)
+        if total == '':
+            return 0
+        elif l >= 2:
+            return 0
+        elif (ch2 == '-' ) and int(total) <= 2147483648:
+            return int(total) * -1
+        elif (ch2 == '-' ) and int(total) > 2147483648:
+            return -2147483648
+        elif int(total) > 2147483647:
+            return 2147483647
+        else:
+            return int(total)
+        
+        
